@@ -1,0 +1,15 @@
+{
+  "name": "haxhost",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node host.js"
+  },
+  "dependencies": {
+    "haxball.js": "^4.0.2"
+  }
+}
