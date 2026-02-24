@@ -20,7 +20,7 @@ const room = HBInit({
   maxPlayers: 20,
   public: true,
   noPlayer: true,
-  token: "TU_TOKEN_AQUI"
+  token: "thr1.AAAAAGmc-GlkGvjH9DmXXA.JbUnYXhkGyw"
 });
 
 room.setDefaultStadium("Big");
