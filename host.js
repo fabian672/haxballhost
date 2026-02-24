@@ -1,31 +1,28 @@
-// host.js (BASE para Render)
-// 1) Pones tu token
-// 2) Deploy en Render
-// 3) Luego reemplazamos este archivo por tu script definitivo
-
 const http = require("http");
+const HaxballJS = require("haxball.js").default;
 
-// ✅ Render necesita que escuches un puerto
+// Servidor web para Render
 const PORT = process.env.PORT || 3000;
 http.createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
-  res.end("KISABOT🤖 Render online. Host corriendo.\n");
-}).listen(PORT, () => console.log("Web alive on port", PORT));
+  res.writeHead(200);
+  res.end("KISABOT🤖 Host activo en Render");
+}).listen(PORT);
 
-// ✅ Headless
-const { HBInit } = require("haxball-headless");
+// Inicializar Haxball
+HaxballJS().then((HBInit) => {
 
-const room = HBInit({
-  roomName: "⚪ 🍀 ° FDK | FUTSAL ° 🍀 ⚪ (Render)",
-  maxPlayers: 20,
-  public: true,
-  noPlayer: true,
-  token: "thr1.AAAAAGmc-GlkGvjH9DmXXA.JbUnYXhkGyw"
-});
+  const room = HBInit({
+    roomName: "⚪ 🍀 ° FDK | FUTSAL ° 🍀 ⚪ (test)",
+    maxPlayers: 20,
+    public: true,
+    noPlayer: true,
+    token: "thr1.AAAAAGmeDKQlU9KsO1mvKQ.VGZzMSpndD8"
+  });
 
-room.setDefaultStadium("Big");
-room.sendAnnouncement("KISABOT🤖 Host levantado en Render ✅", null, 0x00FF00, "bold");
+  room.setDefaultStadium("Big");
 
-// Anti-crash básico
-process.on("uncaughtException", (err) => console.log("uncaughtException:", err));
-process.on("unhandledRejection", (err) => console.log("unhandledRejection:", err));
+  room.onRoomLink = (link) => {
+    console.log("Room link:", link);
+  };
+
+}).catch(err => console.log("HBInit error:", err));
